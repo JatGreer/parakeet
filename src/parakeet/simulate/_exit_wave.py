@@ -149,7 +149,7 @@ class ExitWaveImageSimulator(object):
         atoms = self.sample.get_atoms()
         logger.info("Simulating with %d atoms" % atoms.data.shape[0])
         if len(atoms.data) > 0:
-            coords = atoms.data[["x", "y", "z"]].to_numpy()
+            coords = atoms.data[["x", "y", "z"]].to_numpy().copy()
 
             # If we have motion parameters then get the group indentifier and
             # add the difference in position
@@ -349,6 +349,7 @@ def simulation_factory(
                     interaction_range,
                     velocity,
                     noise_magnitude,
+                    fraction_number,
                 )
             )
             particle_tracks[(image_number, fraction_number)] = position - position0

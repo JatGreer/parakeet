@@ -68,7 +68,7 @@ def translate(atom_data, translation):
         translation (array): The translation
 
     """
-    coords = atom_data[["x", "y", "z"]].to_numpy()
+    coords = atom_data[["x", "y", "z"]].to_numpy().copy()
     coords += np.array(translation, dtype=coords.dtype)
     return atom_data.assign(x=coords[:, 0], y=coords[:, 1], z=coords[:, 2])
 
